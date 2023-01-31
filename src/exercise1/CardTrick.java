@@ -1,5 +1,9 @@
 package exercise1;
 
+import java.util.*;
+
+
+
 /**
  * A class that fills a hand of 7 cards with random Card Objects and then asks the user to pick a card.
  * It then searches the array of cards for the match to the user's card. 
@@ -8,20 +12,31 @@ package exercise1;
  * @author dancye
  * @author Paul Bonenfant Jan 25, 2022 
  */
-public class CardTrick {
+/*public class CardTrick {
+     private static Card[] hand;
+    private static Random rand = new Random();
     
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);      
         
-        Card[] hand = new Card[7];
+         hand = new Card[7];
+       
 
         for (int i = 0; i < hand.length; i++) {
             Card card = new Card();
+             
+              hand[i] = new Card(rand.nextInt(13), rand.nextInt(4));
             //card.setValue(insert call to random number generator here)
             // 
             //card.setSuit(Card.SUITS[insert call to random number between 0-3 here])
             // Hint: You can use Random -> random.nextInt(n) to get a random number between 0 and n-1 (inclusive)
             //       Don't worry about duplicates at this point
         }
+          Scanner scanner = new Scanner(System.in);
+        
+        int rank = scanner.nextInt();
+        int suit = scanner.nextInt();
+        
 
         // insert code to ask the user for Card value and suit, create their card
         // and search the hand here. 
@@ -32,15 +47,90 @@ public class CardTrick {
         // Then loop through the cards in the array to see if there's a match.
         
         // If the guess is successful, invoke the printInfo() method below.
+            //
+        // If the guess is unsuccessful, tell the user that the card was not found
+        
+        // Ask the user to enter their card
+        System.out.print("Please enter the value of the card you're looking for: ");
+        int value = scan.nextInt();
+        System.out.print("Please enter the suit of the card you're looking for: ");
+        
+        
+        // Create the card
+        Card card = new Card(value, suit);
+        
+        // Search the hand
+        boolean found = false;
+        for (int i = 0; i < hand.length; i++) {
+            if (card.equals(hand[i])) {
+                found = true;
+                
+            }
+        }
+        if (!found) {
+            System.out.println("Sorry, that card was not found in the hand.");
+        }
         
     }
+
+    
+    
+    
+    
+}*/
+public class CardTrick
+{
+    public static void main(String[] args)
+    {
+        //Create an array of Card objects
+        Card[] hand = new Card[7];
+       
+        //Fill the array with random cards
+        for (int i = 0; i < hand.length; i++)
+        {
+            hand[i] = new Card();
+        }
+        
+        //Ask the user to pick a card
+        System.out.println("Please pick a card and remember it");
+        
+        //Display the cards
+        for (Card hand1 : hand) {
+            System.out.println(hand1.getDescription());
+        }
+        
+        //Ask the user to enter the card he/she picked
+        Scanner in = new Scanner(System.in);
+        System.out.println("Which card did you pick (enter suit and value)?");
+        String userCard = in.nextLine();
+       
+        //Search the array for the match to the user's card
+        boolean found = false;
+        for (int i = 0; i < hand.length; i++)
+        {
+            if (userCard.equals(hand[i].getDescription()))
+            {
+                System.out.println("Your card is at position " + i);
+                found = true;
+            }
+        }
+       
+        if (!found)
+        {
+            System.out.println("Your card is not in the hand.");
+        }
+    }
+
+        
+    
 
     /**
      * A simple method to print out personal information. Follow the instructions to 
      * replace this information with your own.
      * @author Paul Bonenfant Jan 2022
      */
-    private static void printInfo() {
+    private static void printInfo()
+    {
     
         System.out.println("Congratulations, you guessed right!");
         System.out.println();
@@ -60,8 +150,5 @@ public class CardTrick {
         System.out.println("-- Riding my motorcycle");
 
         System.out.println();
-        
-    
     }
-
 }
